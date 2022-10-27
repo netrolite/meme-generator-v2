@@ -6,7 +6,10 @@ import GetMemeButton from "./GetMemeButton";
 import ImageTextWrapper from "./ImageTextWrapper";
 
 export default function Meme() {
-    const [url, setUrl] = useState();
+    const memes = data.data.memes;
+    function getRandomIndex() { return Math.floor(Math.random() * memes.length) }
+
+    const [url, setUrl] = useState(memes[getRandomIndex()].url);
     const [topText, setTopText] = useState();
     const [bottomText, setBottomText] = useState();
     const [fontSize, setFontSize] = useState("32px");
@@ -14,18 +17,22 @@ export default function Meme() {
 
     // gets 1 random image URL out of 100
     function getRandomUrl() {
-        const myPromise = new Promise((resolve, reject) => {
-            const randomN = Math.random() * 2
-            if(randomN >= 1) {
-                resolve("Successful");
-            } 
-            else {
-                reject("Failed")
-            } 
-        })
-        .then(res => console.log(res))
-        .catch(error => console.error(error))
-    };
+        console.log(url);
+        let newUrl = memes[getRandomIndex()].url
+
+        // this horrible staircase of ifs makes sure images don't repeat
+        if(newUrl === url) {
+            newUrl = memes[getRandomIndex()].url
+            if(newUrl === url) {
+                newUrl = memes[getRandomIndex()].url
+                if(newUrl === url) {
+                    newUrl = memes[getRandomIndex()].url
+                }
+            }
+        }
+
+        setUrl(newUrl);
+    }
 
     // fired when either "top text" or "bottom text" input fields are changed
     // and checks which one of them was changed to render text accordingly
