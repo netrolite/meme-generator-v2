@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function CustomizationWrapper(props) {
-    console.log(props)
     return (
         <div className="customization-wrapper">
                 <form className="cust-option-wrapper">
@@ -41,6 +40,53 @@ export default function CustomizationWrapper(props) {
                         />                
                         Is it legal? 
                 </label>
+
+                <fieldset>
+                    <legend>Your employment status</legend>
+
+                    <label style={{ display: "block" }}>
+                        <input 
+                            type="radio"
+                            name="employment"
+                            value="unemployed"
+                            onChange={props.handleChange}
+                        />
+                        Unemployed
+                    </label>
+                    
+
+                    <label style={{ display: "block" }}>
+                        <input 
+                            type="radio"
+                            name="employment"
+                            value="part-time"
+                            onChange={props.handleChange}
+                        />
+                        Employed part-time
+                    </label>
+
+                    <label style={{ display: "block" }}>
+                        <input 
+                            type="radio"
+                            name="employment"
+                            value="full-time"
+                            onChange={props.handleChange}
+                        />
+                        Employed full-time
+                    </label>
+
+                    <label style={{ display: "block" }}>
+                        <input 
+                            type="radio"
+                            name="employment"
+                            value="business"
+                            onChange={props.handleChange}
+                        />
+                        Running a business
+                    </label>
+
+                    
+                </fieldset>
             </div>    
     )
 }

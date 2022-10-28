@@ -11,7 +11,7 @@ export default function Meme() {
 
     const [url, setUrl] = useState(memes[getRandomIndex()].url);
     const [text, setText] = useState(
-        { topText: "", bottomText: "" }
+        { topText: "", bottomText: "", employment: "" }
     )
     const [fontSize, setFontSize] = useState("32px");
     const [textStroke, setTextStroke] = useState("2px black");
@@ -35,15 +35,16 @@ export default function Meme() {
         setUrl(newUrl);
     }
 
+    console.log(text.employment)
+
     // fired when either "top text" or "bottom text" input fields are changed
     // and checks which one of them was changed to render text accordingly
     function handleInputChange(event) {
         const { type, name, value, checked } = event.target
-        
+
         if(name === "isLegal") {
             setIsLegal(prevState => !prevState)
         }
-        
         setText(prevState => {
             return {
                 ...prevState,
