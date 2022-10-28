@@ -10,8 +10,9 @@ export default function Meme() {
     function getRandomIndex() { return Math.floor(Math.random() * memes.length) }
 
     const [url, setUrl] = useState(memes[getRandomIndex()].url);
-    const [topText, setTopText] = useState();
-    const [bottomText, setBottomText] = useState();
+    const [text, setText] = useState(
+        { topText: "", bottomText: "" }
+    )
     const [fontSize, setFontSize] = useState("32px");
     const [textStroke, setTextStroke] = useState("2px black");
 
@@ -37,12 +38,12 @@ export default function Meme() {
     // fired when either "top text" or "bottom text" input fields are changed
     // and checks which one of them was changed to render text accordingly
     function handleInputChange(event) {
-        if(event.target.className === "top-text-input") {
-            setTopText(event.target.value)
-        }
-        else if(event.target.className === "bottom-text-input") {
-            setBottomText(event.target.value)
-        }
+        setText(prevState => {
+            return {
+                ...prevState,
+                [event.target.name]: event.target.value
+            }
+        })
     }
 
     // removes all whitespace and replaces commas with periods
@@ -66,13 +67,13 @@ export default function Meme() {
         if(regexUnitSpecified.test(input)) {
             // removes all whitespaces
             setFontSize(formatInput(input))
-       }  
-       // if user left the unit unspecified ("55" instead of "55px"),
-       // defaults to using px
-       else if(regexUnitUnspecified.test(input)) {
+        }  
+        // if user left the unit unspecified ("55" instead of "55px"),
+        // defaults to using px
+        else if(regexUnitUnspecified.test(input)) {
             setFontSize(formatInput(input) + "px")
-       } 
-       else console.error("Invalid input!")
+        } 
+        else console.error("Invalid input!")
    }
 
    function applyStroke(event) {
@@ -92,7 +93,6 @@ export default function Meme() {
         }
         else console.error("Text stroke can only use 'px' values")
    }
-
     return (
         <main className="meme">
             <TopBottomInputs 
@@ -109,8 +109,8 @@ export default function Meme() {
             />
 
             <ImageTextWrapper 
-                topText={topText}
-                bottomText={bottomText}
+                topText={text.topText}
+                bottomText={text.bottomText}
                 fontSize={fontSize}
                 textStroke={textStroke}
                 url={url}

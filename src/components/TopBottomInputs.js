@@ -4,12 +4,12 @@ export default function TopBottomInputs(props) {
     return (
         <form className="top-bottom-inputs">
                 <input 
-                    className="top-text-input" 
+                    name="topText"
                     placeholder="Top text"
                     onChange={props.handleInputChange}
                 />
                 <input 
-                    className="bottom-text-input" 
+                    name="bottomText"
                     placeholder="Bottom text"
                     onChange={props.handleInputChange}
                 />
