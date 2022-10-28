@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function TopBottomInputs(props) {
-    console.log(props.state);
     return (
         <form className="top-bottom-inputs">
                 <input 

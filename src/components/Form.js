@@ -11,7 +11,7 @@ export default function Meme() {
 
     const [url, setUrl] = useState(memes[getRandomIndex()].url);
     const [text, setText] = useState(
-        { topText: "", bottomText: "" }
+        { topText: new String(""), bottomText: new String("") }
     )
     const [fontSize, setFontSize] = useState("32px");
     const [textStroke, setTextStroke] = useState("2px black");
