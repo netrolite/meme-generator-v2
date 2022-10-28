@@ -15,6 +15,7 @@ export default function Meme() {
     )
     const [fontSize, setFontSize] = useState("32px");
     const [textStroke, setTextStroke] = useState("2px black");
+    const [isLegal, setIsLegal] = useState(false)
 
     // gets 1 random image URL out of 100
     function getRandomUrl() {
@@ -37,10 +38,16 @@ export default function Meme() {
     // fired when either "top text" or "bottom text" input fields are changed
     // and checks which one of them was changed to render text accordingly
     function handleInputChange(event) {
+        const { type, name, value, checked } = event.target
+        
+        if(name === "isLegal") {
+            setIsLegal(prevState => !prevState)
+        }
+        
         setText(prevState => {
             return {
                 ...prevState,
-                [event.target.name]: event.target.value
+                [name]: value
             }
         })
     }
@@ -97,11 +104,13 @@ export default function Meme() {
             <TopBottomInputs 
                 handleInputChange={handleInputChange} 
                 state={text}
-            />
+                />
 
             <CustomizationWrapper 
                 applyFontSize={applyFontSize}
                 applyStroke={applyStroke}
+                isChecked={isLegal}
+                handleChange={handleInputChange}
             />            
 
             <GetMemeButton 

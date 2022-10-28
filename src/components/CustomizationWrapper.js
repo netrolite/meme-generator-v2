@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function CustomizationWrapper(props) {
+    console.log(props)
     return (
         <div className="customization-wrapper">
                 <form className="cust-option-wrapper">
@@ -30,6 +31,16 @@ export default function CustomizationWrapper(props) {
                     Apply
                     </button>
                 </form>
+
+                <label> 
+                    <input
+                        type="checkbox"
+                        name="isLegal"
+                        checked={props.isChecked}
+                        onChange={props.handleChange}
+                        />                
+                        Is it legal? 
+                </label>
             </div>    
     )
 }
