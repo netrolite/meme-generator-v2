@@ -11,7 +11,7 @@ export default function Meme() {
 
     const [url, setUrl] = useState(memes[getRandomIndex()].url);
     const [text, setText] = useState(
-        { topText: new String(""), bottomText: new String("") }
+        { topText: "", bottomText: "" }
     )
     const [fontSize, setFontSize] = useState("32px");
     const [textStroke, setTextStroke] = useState("2px black");
@@ -21,7 +21,7 @@ export default function Meme() {
         console.log(url);
         let newUrl = memes[getRandomIndex()].url
 
-        // this horrible staircase of ifs makes sure images don't repeat
+        // this christmas tree makes sure images don't repeat
         if(newUrl === url) {
             newUrl = memes[getRandomIndex()].url
             if(newUrl === url) {
@@ -38,12 +38,13 @@ export default function Meme() {
     // fired when either "top text" or "bottom text" input fields are changed
     // and checks which one of them was changed to render text accordingly
     function handleInputChange(event) {
-        setText(prevState => (
-            {
+        console.log(event.target.name + ": " + event.target.value);
+        setText(prevState => {
+            return {
                 ...prevState,
                 [event.target.name]: event.target.value
             }
-        ))
+        })
     }
 
     // removes all whitespace and replaces commas with periods
