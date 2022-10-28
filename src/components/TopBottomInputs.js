@@ -7,13 +7,13 @@ export default function TopBottomInputs(props) {
                     name="topText"
                     placeholder="Top text"
                     onChange={props.handleInputChange}
-                    value={props.state.bottomText ? props.state.bottomText : ""}
+                    value={props.state.topText}
                 />
                 <input 
                     name="bottomText"
                     placeholder="Bottom text"
                     onChange={props.handleInputChange}
-                    value={props.state.bottomText ? props.state.bottomText : ""}
+                    value={props.state.bottomText}
                 />
             </form>
     )

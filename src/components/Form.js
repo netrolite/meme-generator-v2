@@ -18,7 +18,6 @@ export default function Meme() {
 
     // gets 1 random image URL out of 100
     function getRandomUrl() {
-        console.log(url);
         let newUrl = memes[getRandomIndex()].url
 
         // this christmas tree makes sure images don't repeat
@@ -38,7 +37,6 @@ export default function Meme() {
     // fired when either "top text" or "bottom text" input fields are changed
     // and checks which one of them was changed to render text accordingly
     function handleInputChange(event) {
-        console.log(event.target.name + ": " + event.target.value);
         setText(prevState => {
             return {
                 ...prevState,
@@ -50,7 +48,7 @@ export default function Meme() {
     // removes all whitespace and replaces commas with periods
     function formatInput(string) {
         string = string.replace(/\s/g, "");
-        return string.replace(/,/g, ".")
+        return string.replace(/,/g, ".");
     }
 
     function applyFontSize(event) {
