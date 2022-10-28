@@ -38,12 +38,12 @@ export default function Meme() {
     // fired when either "top text" or "bottom text" input fields are changed
     // and checks which one of them was changed to render text accordingly
     function handleInputChange(event) {
-        setText(prevState => {
-            return {
+        setText(prevState => (
+            {
                 ...prevState,
                 [event.target.name]: event.target.value
             }
-        })
+        ))
     }
 
     // removes all whitespace and replaces commas with periods
@@ -97,6 +97,7 @@ export default function Meme() {
         <main className="meme">
             <TopBottomInputs 
                 handleInputChange={handleInputChange} 
+                state={text}
             />
 
             <CustomizationWrapper 
