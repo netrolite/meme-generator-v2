@@ -44,48 +44,50 @@ export default function CustomizationWrapper(props) {
                 <fieldset>
                     <legend>Your employment status</legend>
 
-                    <label style={{ display: "block" }}>
+                    <div>
                         <input 
                             type="radio"
                             name="employment"
+                            id="employmentChoice1"
                             value="unemployed"
                             onChange={props.handleChange}
                         />
-                        Unemployed
-                    </label>
-                    
+                        <label htmlFor="employmentChoice1">Employed full-time</label>
+                    </div>
 
-                    <label style={{ display: "block" }}>
+                    <div>
                         <input 
                             type="radio"
                             name="employment"
+                            id="employmentChoice2"
                             value="part-time"
                             onChange={props.handleChange}
                         />
-                        Employed part-time
-                    </label>
+                        <label htmlFor="employmentChoice2">Employed part-time</label>
+                    </div>
 
-                    <label style={{ display: "block" }}>
+                    <div>
                         <input 
                             type="radio"
                             name="employment"
+                            id="employmentChoice3"
                             value="full-time"
                             onChange={props.handleChange}
                         />
-                        Employed full-time
-                    </label>
-
-                    <label style={{ display: "block" }}>
+                        <label htmlFor="employmentChoice3">Employed full-time</label>
+                    </div>
+                        
+                    <div>
                         <input 
                             type="radio"
                             name="employment"
+                            id="employmentChoice4"
                             value="business"
                             onChange={props.handleChange}
                         />
-                        Running a business
-                    </label>
+                        <label htmlFor="employmentChoice4">Running a business</label>
+                    </div>
 
-                    
                 </fieldset>
             </div>    
     )

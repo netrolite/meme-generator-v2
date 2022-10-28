@@ -32,6 +32,10 @@ body {
     font-weight: 400;
 }
 
+input[type="radio"] {
+    display: inline
+}
+
 .logo-img {
     width: 31.3px;
 }
