@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-import 'font-awesome/css/font-awesome.min.css';
+import arrow from "../media/arrow.svg"
 
 export default function CustomizationWrapper(props) {
     // if showAdvanced is true, removes "active class". Otherwise, adds "active" class
     function showHideComponent() {
         if(props.showAdvanced) {
-            const elem = document.querySelector(".customization-wrapper");
-            elem.classList.remove("active");
+            document.querySelector(".customization-wrapper").classList.remove("active");
+            document.querySelector(".customization-wrapper").classList.remove("pointer-events")
         }
         else {
-            const elem = document.querySelector(".customization-wrapper");
-            elem.classList.add("active")
+            document.querySelector(".customization-wrapper").classList.add("active");
+            setTimeout(() => {
+                document.querySelector(".customization-wrapper").classList.add("pointer-events")
+            }, 200)
         } 
     }    
 
@@ -27,7 +29,10 @@ export default function CustomizationWrapper(props) {
                 onClick={callOtherFunctions}
                 >
                     { props.showAdvanced ? "Hide" : "Show"} advanced settings
-                <i className="fa fa-solid fa-triangle"></i>
+                    <img 
+                        src={arrow} 
+                        className="arrow-icon" 
+                    />
             </button>
             <div className="customization-wrapper-wrapper">
                 <div className="customization-wrapper">

@@ -78,6 +78,8 @@ input[type="radio"] {
 #stroke-large { display: inline-block; } 
 
 .show-advanced-btn {
+    display: flex;
+    align-items: center;
     border: 1px solid transparent;
     border-radius: 2px;
     padding: 2px;
@@ -90,6 +92,16 @@ input[type="radio"] {
 .show-advanced-btn:hover {
     border: 1px solid gray;
     cursor: pointer;
+}
+
+.arrow-icon {
+    width: 12px;
+    margin-top: 2px;
+    margin-left: 4px;
+}
+
+.arrow-icon.inverted {
+    transform: rotate(180deg);
 }
 
 /* to make cusotmization-wrapper keep its width */
@@ -112,10 +124,11 @@ input[type="radio"] {
     opacity: 1;
     transition: 200ms;
     transform: translate(0, 0);
-    pointer-events: all;
 }
 
-
+.customization-wrapper.pointer-events {
+    pointer-events: all;
+}
 
 .apply-button {
     border: 1px solid #696969;
