@@ -64,7 +64,7 @@ input[type="radio"] {
     border: 1px solid #D5D4D8;
     border-radius: 5px;
     text-indent: 10px;
-    padding: 3px 0;
+    height: 40px;
 }
 
 .cust-option-wrapper {
@@ -158,7 +158,11 @@ input[type="radio"] {
 
 @media only screen and (max-device-width: 480px) {
     * { font-size: 1rem; }
-    
+ 
+    .top-bottom-inputs input, .cust-input {
+        height: 35px;
+    }
+
     .top-text, 
     .bottom-text {
         font-size: 1.5rem; 

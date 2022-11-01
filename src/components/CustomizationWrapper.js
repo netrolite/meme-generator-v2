@@ -14,7 +14,7 @@ export default function CustomizationWrapper(props) {
         } 
     }    
 
-    // a function to call 2 other functions (insanity)
+    // a function to call 2 other functions
     function callOtherFunctions() {
         props.toggleAdvanced();
         showHideComponent();
