@@ -6,10 +6,12 @@ export default function CustomizationWrapper(props) {
     function showHideComponent() {
         if(props.showAdvanced) {
             document.querySelector(".customization-wrapper").classList.remove("active");
+            document.querySelector(".arrow-icon").classList.remove("inverted");
             document.querySelector(".customization-wrapper").classList.remove("pointer-events")
         }
         else {
             document.querySelector(".customization-wrapper").classList.add("active");
+            document.querySelector(".arrow-icon").classList.add("inverted");
             setTimeout(() => {
                 document.querySelector(".customization-wrapper").classList.add("pointer-events")
             }, 200)
