@@ -15,7 +15,7 @@ export default function Meme() {
     )
     const [fontSize, setFontSize] = useState("32px");
     const [textStroke, setTextStroke] = useState("2px black");
-    const [isLegal, setIsLegal] = useState(false)
+    const [showAdvanced, setShowAdvanced] = useState(false);
 
     // gets 1 random image URL out of 100
     function getRandomUrl() {
@@ -31,7 +31,6 @@ export default function Meme() {
                 }
             }
         }
-
         setUrl(newUrl);
     }
 
@@ -40,16 +39,16 @@ export default function Meme() {
     // and checks which one of them was changed to render text accordingly
     function handleInputChange(event) {
         const { type, name, value, checked } = event.target
-
-        if(name === "isLegal") {
-            setIsLegal(prevState => !prevState)
-        }
         setText(prevState => {
             return {
                 ...prevState,
                 [name]: value
             }
         })
+    }
+
+    function toggleAdvanced() {
+        setShowAdvanced(prevState => !prevState);
     }
 
     // removes all whitespace and replaces commas with periods
@@ -59,14 +58,13 @@ export default function Meme() {
     }
 
     function applyFontSize(event) {
-        // prevents page reload
         event.preventDefault();
 
         const input = document.querySelector("#font-size-input").value
-        // checks if the unit (px, rem, em...) is specified
+        // regex to check if the unit (px, rem, em...) is specified
         const regexUnitSpecified = /^\s*\d+\s*([.,]\s*\d+)?\s*(px|rem|em|cm|mm|in|pt|pc|ex|ch|vw|vh|vmin|vmax|%)\s*$/i
 
-        // checks if the unit (px, rem, em...) is NOT specified
+        // regex to check if the unit (px, rem, em...) is NOT specified
         const regexUnitUnspecified = /^\s*\d+\s*([.,]\s*\d+)?\s*$/
 
         // if user has specified the unit ("33px" or "2.5em")
@@ -103,14 +101,15 @@ export default function Meme() {
         <main className="meme">
             <TopBottomInputs 
                 handleInputChange={handleInputChange} 
-                state={text}
+                topBottomText={text}
                 />
 
             <CustomizationWrapper 
                 applyFontSize={applyFontSize}
                 applyStroke={applyStroke}
-                isChecked={isLegal}
                 handleChange={handleInputChange}
+                toggleAdvanced={toggleAdvanced}
+                showAdvanced={showAdvanced}
             />            
 
             <GetMemeButton 

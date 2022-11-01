@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-size: 1.05rem;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar { display: none; }
@@ -47,8 +48,9 @@ input[type="radio"] {
 
 .meme {
     padding: 36px;
-    max-width: 600px;
+    max-width: 650px;
     margin: auto;
+    position: relative;
 }
 
 .top-bottom-inputs {
@@ -63,6 +65,26 @@ input[type="radio"] {
     border-radius: 5px;
     text-indent: 10px;
     padding: 3px 0;
+}
+
+.customization-wrapper {
+    position: absolute;
+    transform: scale(100%) translate(-50%, -100%);
+    padding: 36px;
+    width: 100%;
+    left: 50%;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: 400ms;
+    pointer-events: none;
+}
+
+.customization-wrapper.active {
+    position: relative;
+    padding: 0;
+    transform: scale(100%) translate(-50%, 0);
+    opacity: 1;
+    transition: 400ms;
 }
 
 .cust-option-wrapper {
