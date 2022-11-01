@@ -77,6 +77,21 @@ input[type="radio"] {
 #stroke-small { display: none; }
 #stroke-large { display: inline-block; } 
 
+.show-advanced-btn {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 2px;
+    background-color: transparent;
+    font-size: 0.9rem;
+    color: gray;
+    margin-top: 8px;
+}
+
+.show-advanced-btn:hover {
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
 /* to make cusotmization-wrapper keep its width */
 .customization-wrapper-wrapper {
     position: relative;
