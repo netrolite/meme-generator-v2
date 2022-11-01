@@ -5,15 +5,19 @@ export default function CustomizationWrapper(props) {
     // if showAdvanced is true, removes "active class". Otherwise, adds "active" class
     function showHideComponent() {
         if(props.showAdvanced) {
-            document.querySelector(".customization-wrapper").classList.remove("active");
+            const elem = document.querySelector(".customization-wrapper");
+            elem.classList.remove("active");
         }
-        else document.querySelector(".customization-wrapper").classList.add("active");
+        else {
+            const elem = document.querySelector(".customization-wrapper");
+            elem.classList.add("active")
+        } 
     }    
 
-    // a function to call 2 other functions (complete fucking insanity)
+    // a function to call 2 other functions (insanity)
     function callOtherFunctions() {
-        showHideComponent();
         props.toggleAdvanced();
+        showHideComponent();
     }
     
     return (
@@ -25,36 +29,37 @@ export default function CustomizationWrapper(props) {
                     { props.showAdvanced ? "Hide" : "Show"} advanced settings
                 <i className="fa fa-solid fa-triangle"></i>
             </button>
+            <div className="customization-wrapper-wrapper">
+                <div className="customization-wrapper">
+                    <form className="cust-option-wrapper">
+                        <input 
+                            className="cust-input"
+                            id="font-size-input"
+                            placeholder="Font size (default 32px)"
+                        />
+                        <button 
+                            className="apply-button"
+                            onClick={props.applyFontSize}
+                        >
+                        Apply
+                        </button>
+                    </form>
 
-            <div className="customization-wrapper">
-                <form className="cust-option-wrapper">
-                    <input 
-                        className="cust-input"
-                        id="font-size-input"
-                        placeholder="Font size (default 32px)"
-                    />
-                    <button 
-                        className="apply-button"
-                        onClick={props.applyFontSize}
-                    >
-                    Apply
-                    </button>
-                </form>
-
-                <form className="cust-option-wrapper">
-                    <input 
-                        className="cust-input"
-                        id="stroke-input"
-                        placeholder="Font stroke (default 2px)"
-                    />
-                    <button 
-                        className="apply-button"
-                        onClick={props.applyStroke}
-                    >
-                    Apply
-                    </button>
-                </form>
-            </div>    
+                    <form className="cust-option-wrapper">
+                        <input 
+                            className="cust-input"
+                            id="stroke-input"
+                            placeholder="Font stroke (default 2px)"
+                        />
+                        <button 
+                            className="apply-button"
+                            onClick={props.applyStroke}
+                        >
+                        Apply
+                        </button>
+                    </form>
+                </div>    
+            </div>
         </>
     )
 }

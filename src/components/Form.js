@@ -102,7 +102,7 @@ export default function Meme() {
             <TopBottomInputs 
                 handleInputChange={handleInputChange} 
                 topBottomText={text}
-                />
+            />
 
             <CustomizationWrapper 
                 applyFontSize={applyFontSize}

@@ -67,26 +67,6 @@ input[type="radio"] {
     padding: 3px 0;
 }
 
-.customization-wrapper {
-    position: absolute;
-    transform: scale(100%) translate(-50%, -100%);
-    padding: 36px;
-    width: 100%;
-    left: 50%;
-    box-sizing: border-box;
-    opacity: 0;
-    transition: 400ms;
-    pointer-events: none;
-}
-
-.customization-wrapper.active {
-    position: relative;
-    padding: 0;
-    transform: scale(100%) translate(-50%, 0);
-    opacity: 1;
-    transition: 400ms;
-}
-
 .cust-option-wrapper {
      margin-top: 18px; 
      display: grid;
@@ -96,6 +76,31 @@ input[type="radio"] {
 
 #stroke-small { display: none; }
 #stroke-large { display: inline-block; } 
+
+/* to make cusotmization-wrapper keep its width */
+.customization-wrapper-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.customization-wrapper {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: 200ms;
+    transform: translate(0, -100%);
+    pointer-events: none;
+}
+
+.customization-wrapper.active {
+    position: relative;
+    opacity: 1;
+    transition: 200ms;
+    transform: translate(0, 0);
+    pointer-events: all;
+}
+
+
 
 .apply-button {
     border: 1px solid #696969;
