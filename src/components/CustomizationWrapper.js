@@ -48,7 +48,7 @@ export default function CustomizationWrapper(props) {
                             className="apply-button"
                             onClick={props.applyFontSize}
                         >
-                        Apply
+                            Apply
                         </button>
                     </form>
 
@@ -62,7 +62,7 @@ export default function CustomizationWrapper(props) {
                             className="apply-button"
                             onClick={props.applyStroke}
                         >
-                        Apply
+                            Apply
                         </button>
                     </form>
                 </div>    

@@ -1,39 +1,58 @@
-import React, { useState } from "react";
-import data from "../data";
+import React, { useEffect, useState } from "react";
 import TopBottomInputs from "./TopBottomInputs";
 import CustomizationWrapper from "./CustomizationWrapper";
 import GetMemeButton from "./GetMemeButton";
 import ImageTextWrapper from "./ImageTextWrapper";
 
 export default function Meme() {
-    const memes = data.data.memes;
-    function getRandomIndex() { return Math.floor(Math.random() * memes.length) }
+    function getRandomIndex() { return Math.floor(Math.random() * allURL.length) }
 
-    const [url, setUrl] = useState(memes[getRandomIndex()].url);
+    const [allURL, setAllURL] = useState([]);
+    const [url, setUrl] = useState(null);
     const [text, setText] = useState(
         { topText: "", bottomText: "" }
     )
     const [fontSize, setFontSize] = useState("32px");
     const [textStroke, setTextStroke] = useState("2px black");
     const [showAdvanced, setShowAdvanced] = useState(false);
+    
 
     // gets 1 random image URL out of 100
     function getRandomUrl() {
-        let newUrl = memes[getRandomIndex()].url
+        let newUrl = allURL[getRandomIndex()].url
 
-        // this christmas tree makes sure images don't repeat
+        // makes sure images don't repeat
         if(newUrl === url) {
-            newUrl = memes[getRandomIndex()].url
+            newUrl = allURL[getRandomIndex()].url
             if(newUrl === url) {
-                newUrl = memes[getRandomIndex()].url
+                newUrl = allURL[getRandomIndex()].url
                 if(newUrl === url) {
-                    newUrl = memes[getRandomIndex()].url
+                    newUrl = allURL[getRandomIndex()].url
                 }
             }
         }
         setUrl(newUrl);
     }
 
+    function fetchMemes() {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => {
+                if(!res.ok) throw new Error("Response not ok");
+                console.log("fetched");
+                return res.json();
+            })
+            .then(data => {
+                setAllURL(data.data.memes);
+            })
+            .catch(err => console.log("Fetch error:", err))
+    }
+
+    useEffect(() => {
+        if (allURL.length > 0) {
+            getRandomUrl();
+        }
+        else fetchMemes();
+    }, [allURL])
 
     // fired when either "top text" or "bottom text" input fields are changed
     // and checks which one of them was changed to render text accordingly
@@ -116,13 +135,20 @@ export default function Meme() {
                 getRandomUrl={getRandomUrl}
             />
 
-            <ImageTextWrapper 
-                topText={text.topText}
-                bottomText={text.bottomText}
-                fontSize={fontSize}
-                textStroke={textStroke}
-                url={url}
-            />
+            {
+                url
+                ?
+                <ImageTextWrapper 
+                    topText={text.topText}
+                    bottomText={text.bottomText}
+                    fontSize={fontSize}
+                    textStroke={textStroke}
+                    url={url}
+                />
+                :
+                "Loading..."
+            }
+            
 
         </main> 
     )
